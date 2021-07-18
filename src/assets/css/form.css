@@ -1,0 +1,21 @@
+.form-control{
+    border: none;
+    border-radius: 6px !important;
+    background-color: #f0f0f0 !important;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300 !important;
+    border: 1px solid red !important;
+}
+.form-control-search{
+    border: none;
+    background-color: #f0f0f0 !important;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 500 !important;
+    color: red;
+    padding: 0 50px;
+    border: 1px solid green;
+}
+.form-control:focus {
+    border-color: #f0f0f0;
+    box-shadow: none !important;
+}
