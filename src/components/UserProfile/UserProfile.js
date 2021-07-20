@@ -115,6 +115,7 @@ class UserProfile extends Component {
                     localStorage.removeItem('email');
                     localStorage.removeItem('phone');
                     localStorage.removeItem('photo');
+                    localStorage.setItem('user', username);
                     SessionHelper.setNameSession(response.data.name);
                     SessionHelper.setEmailSession(response.data.email);
                     SessionHelper.setPhoneSession(response.data.phone);

@@ -68,7 +68,7 @@ class ForgetPassword extends Component {
             .then(response=>{
                 if(response.status==200 && response.data==1)
                 {
-                    cogoToast.success('Password Recover Successfully, Now You Can Login');
+                    cogoToast.success('Password Recover Successfully');
                     setTimeout(()=>{
                         this.setState({redirectStatus : true});
                     },3000);

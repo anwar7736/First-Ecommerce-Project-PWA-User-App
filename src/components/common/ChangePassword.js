@@ -18,7 +18,7 @@ class ChangePassword extends Component {
             redirectStatus : false,
         }
     }
-    onRecoveryHandler=(event)=>{
+    onUpdateHandler=(event)=>{
         event.preventDefault();
         let email = SessionHelper.getEmailSession();
         let old_password = this.state.old_password;
@@ -71,14 +71,17 @@ class ChangePassword extends Component {
             .then(response=>{
                 if(response.status==200 && response.data==1)
                 {
-                    cogoToast.success('Password Changed Successfully, Now You Can Login Again');
+                    cogoToast.success('Password Changed Successfully');
                     setTimeout(()=>{
                         this.setState({redirectStatus : true});
-                        sessionStorage.removeItem('id');
-                        sessionStorage.removeItem('name');
-                        sessionStorage.removeItem('email');
-                        sessionStorage.removeItem('phone');
-                        sessionStorage.removeItem('photo');
+                        
+                        localStorage.setItem('pass', this.state.new_password);
+                        localStorage.removeItem('id');
+                        localStorage.removeItem('name');
+                        localStorage.removeItem('email');
+                        localStorage.removeItem('phone');
+                        localStorage.removeItem('photo');
+                        localStorage.removeItem('redirect_path');
 
                     },3000);
                     
@@ -97,7 +100,7 @@ class ChangePassword extends Component {
     onRedirectLogin=()=>{
         if(this.state.redirectStatus===true){
             return (
-                    <Redirect to="/user_login" />
+                    <Redirect to="/" />
                    );
         }
     }
@@ -115,7 +118,7 @@ class ChangePassword extends Component {
                         <Col className="offset-md-3 shadow-sm bg-white mt-1" md={6} lg={6} sm={12} xs={12}>
                             <Row className="text-center ">
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
-                                    <Form id="UserForm" onSubmit={this.onRecoveryHandler} className="onboardForm">
+                                    <Form id="UserForm" onSubmit={this.onUpdateHandler} className="onboardForm">
                                         <h5 className="text-secondary text-center mb-5"><b>CHANGE PASSWORD</b></h5><hr/>
                                         <input onChange={(e)=>this.setState({old_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your old password..."/>
                                         <input onChange={(e)=>this.setState({new_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your new password..."/>
