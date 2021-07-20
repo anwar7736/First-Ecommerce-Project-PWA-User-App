@@ -128,16 +128,19 @@ class NavMenuMobile extends Component {
              return (
             <Fragment>
             <Navbar fluid={"true"} className="fixed-top shadow-sm p-2 m-0 bg-white">
-
                 <a style={{cursor: 'pointer'}} onClick={this.MenuBarClickHandler} className=" mx-2 navbar-brand"><i className="fa fa-bars"></i></a>
                 <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
-                <Link to="/favourite" className="btn"><i className="fa h4 fa-heart"></i>  <sup><span className="badge text-white bg-danger">{this.state.favCount}</span></sup></Link>
-                <Link to="/notification" className="btn"><i className="fa h4  fa-bell"></i> <sup><span className="badge text-white bg-danger">{this.state.notCount}</span></sup></Link>
                             <NavDropdown title={<img className="profile-photo" src={photo} />} id="navbarScrollingDropdown">
                             <NavDropdown.Item>
                                    <span className="text-muted">{name}</span>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
+                            <NavDropdown.Item>
+                                 <Link to="/notification" className="btn"><i className="fas h4 fa-bell"></i> <sup><span className="badge text-white bg-danger">{this.state.notCount}</span></sup></Link>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <Link to="/favourite" className="btn"><i className="fas h4 fa-heart"></i>  <sup><span className="badge text-white bg-danger">{this.state.favCount}</span></sup></Link>
+                            </NavDropdown.Item>
                             <NavDropdown.Item>
                                 <Link to="/order_details" className="btn text-danger"><i className="fas fa-list"></i> Order List</Link>
                             </NavDropdown.Item>
