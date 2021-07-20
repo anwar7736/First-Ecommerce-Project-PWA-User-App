@@ -104,7 +104,7 @@ class ChangePassword extends Component {
     render() {
         return (
             <Fragment>
-                <Container className="TopSection">
+                <Container className="TopSection animated slideInDown">
                     <Row>
                         <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
@@ -116,7 +116,7 @@ class ChangePassword extends Component {
                             <Row className="text-center ">
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
                                     <Form id="UserForm" onSubmit={this.onRecoveryHandler} className="onboardForm">
-                                        <h3 className="section-title">Change Your Password</h3>
+                                        <h5 className="text-secondary text-center mb-5"><b>CHANGE PASSWORD</b></h5><hr/>
                                         <input onChange={(e)=>this.setState({old_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your old password..."/>
                                         <input onChange={(e)=>this.setState({new_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your new password..."/>
                                         <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your confirm new password..."/>

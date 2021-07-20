@@ -71,7 +71,7 @@ class ListByCategory extends Component {
                               <Breadcrumb.Item><Link to={"/ProductListByCategory/"+this.props.category}>ListByCategory</Link></Breadcrumb.Item>
                             </Breadcrumb>
                          </Row>
-                            <Container className="text-center TopSection" fluid={true}>
+                            <Container className="text-center TopSection animated slideInDown" fluid={true}>
                                 <h4 className="section-title text-success"><span className="text-danger">CATEGORY</span> <span className="text-success">WISE</span> <span className="text-primary">PRODUCTS</span></h4>
                                 <h4 className="section-title text-muted">CATEGORY : <span className="text-danger">{this.props.category}</span></h4><br/>
                                   <Row>

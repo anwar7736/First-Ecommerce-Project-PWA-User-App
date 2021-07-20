@@ -39,21 +39,21 @@ class ProductDetails extends Component {
         let product_size = this.state.size;
         let product_quantity = this.state.quantity;
 
-        if(this.state.isColor==='YES' && product_color.length===0)
+        if(this.state.isColor=='YES' && product_color.length==0)
         {
               cogoToast.error('Please Select Color', {position : 'bottom-center'});
         }
 
-        else if(this.state.isSize==='YES' && product_size.length===0)
+        else if(this.state.isSize=='YES' && product_size.length==0)
         {
               cogoToast.error('Please Select Size', {position : 'bottom-center'});
         }
 
-        else if(product_quantity.length===0)
+        else if(product_quantity.length==0)
         {
               cogoToast.error('Please Choose Quantity', {position : 'bottom-center'});
         }
-
+        else{
         let MyForm = new FormData();
         MyForm.append('user_id', user_id);
         MyForm.append('product_code', product_code);
@@ -75,6 +75,7 @@ class ProductDetails extends Component {
         .catch(error=>{
              //cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
         })
+        }
     }
         else
         {
@@ -329,9 +330,9 @@ class ProductDetails extends Component {
             }
           return (
             <Fragment>
-                <Container  className="BetweenTwoSection">
+                <Container  className="BetweenTwoSection animated slideInDown">
                     <Row className="p-2">
-                        <Breadcrumb className="shadow-sm w-100 bg-white mt-5">
+                        <Breadcrumb className="shadow-sm w-100 bg-white breadcrumb-nav">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
                           <Breadcrumb.Item><Link to={"/product_details/"+this.state.code}>Details</Link></Breadcrumb.Item>
                         </Breadcrumb>

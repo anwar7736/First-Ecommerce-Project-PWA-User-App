@@ -1,6 +1,7 @@
 import React, {Component,Fragment} from 'react';
 import {Card,Modal,Button,Container,Row,Col,Breadcrumb} from "react-bootstrap";
 import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router';
 import Axios from 'axios';
 import ApiURL from '../../api/ApiURL';
 
@@ -15,11 +16,12 @@ class Notification extends Component {
             title : '',
             message : '',
             date : '',
+            RefreshStatus : false,
         }
     }
 
     handleClose = () => {
-        this.setState({ NotificationStatus:false});
+        this.setState({ NotificationStatus:false, RefreshStatus:true});
     };
     handleShow = (event) => {
          Axios.get(ApiURL.UpdateNotificationStatus(event.target.getAttribute('data-id')))
@@ -40,6 +42,15 @@ class Notification extends Component {
         });
         
     };
+    PageRefresh=()=>{
+        if(this.state.RefreshStatus==true)
+        {
+            let url = window.location;
+            return(
+                     <Redirect to={url}/>
+                  );
+        }
+    }
 
     render() {
         let MyList = this.props.NotificationList;
@@ -69,7 +80,7 @@ class Notification extends Component {
 
         return (
                 <Fragment>
-                    <Container className="TopSection">
+                    <Container className="TopSection animated slideInDown">
                         <Row>
                             <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                               <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
@@ -97,8 +108,7 @@ class Notification extends Component {
                             </Button>
                         </Modal.Footer>
                     </Modal>
-
-
+                    {this.PageRefresh()}
                 </Fragment>
         );
     }

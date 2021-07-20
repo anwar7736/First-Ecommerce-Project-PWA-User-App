@@ -130,7 +130,7 @@ class UserSignup extends Component {
     render() {
         return (
             <Fragment>
-                <Container className="TopSection">
+                <Container className="TopSection animated slideInDown">
                     <Row>
                         <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
@@ -142,7 +142,7 @@ class UserSignup extends Component {
                             <Row className="text-center ">
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
                                     <Form id="UserForm" onSubmit={this.onRegistration} className="onboardForm">
-                                        <h3 className="section-title">USER REGISTRATION</h3>
+                                        <h5 className="text-success text-center mb-5"><b>USER REGISTRATION</b></h5><hr/>
                                         <input onChange={(e)=>this.setState({fullname : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your full name..."/>
                                         <input onChange={(e)=>this.setState({username : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your username..."/>
                                         <input onChange={(e)=>this.setState({email : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your valid email address..."/>

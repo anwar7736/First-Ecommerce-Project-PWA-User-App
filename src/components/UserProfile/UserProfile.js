@@ -141,7 +141,7 @@ class UserProfile extends Component {
     render() {
         return (
             <Fragment>
-                <Container className="TopSection">
+                <Container className="TopSection animated slideInDown">
                     <Row>
                         <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
@@ -157,7 +157,7 @@ class UserProfile extends Component {
                                             <div className="container-fluid ">
                                                 <div className="row">
                                                     <div className="col-md-12 p-1  col-lg-12 col-sm-12 col-12">
-                                                        <h4 className="text-success text-center"><b>YOUR PROFILE</b></h4><hr/>
+                                                        <h5 className="text-success text-center"><b>YOUR PROFILE</b></h5><hr/>
                                                     </div>
                                                 </div>
                                                 <div className="row">

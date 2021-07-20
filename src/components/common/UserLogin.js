@@ -12,11 +12,21 @@ class UserLogin extends Component {
       constructor(){
         super();
         this.state = {
-            username : 'anwarhossain7736',
-            password : '123',
+            username : '',
+            password : '',
             redirectStatus : false,
+            isChecked : true,
         }
     }
+    componentDidMount(){
+    let user = localStorage.getItem('user');
+    let pass = localStorage.getItem('pass')
+    if(user!==null && pass!==null)
+    {
+        this.setState({username : user, password : pass, isChecked : true});
+    } 
+}
+
     onLoginHandler=(event)=>{
         event.preventDefault();
         let username = this.state.username;
@@ -48,6 +58,20 @@ class UserLogin extends Component {
                     SessionHelper.setPhoneSession(response.data.phone);
                     SessionHelper.setPhotoSession(response.data.photo);
                     document.getElementById('UserForm').reset();
+                    if(this.state.isChecked==true)
+                    {
+                        localStorage.setItem('user', this.state.username);
+                        localStorage.setItem('pass', this.state.password);
+                    }
+                    else{
+                        let user = localStorage.getItem('user');
+                        let pass = localStorage.getItem('pass');
+                        if(user!==null && pass!==null)
+                        {
+                            localStorage.removeItem('user');
+                            localStorage.removeItem('pass');    
+                        }
+                    }
                     this.setState({redirectStatus : true});
                 }
                 else
@@ -80,10 +104,36 @@ class UserLogin extends Component {
         
     }
     }
+
+    passwordShowHide=()=>{
+    let input = document.getElementById("password");
+    let btnText = document.getElementById("showHideBtn");
+    if(input.type=="password")
+    {
+        input.type = "text";
+        btnText.innerHTML = '<i class="fa fa-eye-slash"/>';
+    }
+    else
+    {
+        input.type = "password";
+        btnText.innerHTML = '<i class="fa fa-eye"/>';
+    }
+}
+
+RememberOnChange=()=>{
+    if(this.state.isChecked==false)
+    {
+        this.setState({isChecked : true});
+    }
+    else
+    {
+        this.setState({isChecked : false});
+    }
+}
     render() {
         return (
             <Fragment>
-                <Container className="TopSection">
+                <Container className="TopSection animated slideInDown">
                     <Row>
                         <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
@@ -95,9 +145,13 @@ class UserLogin extends Component {
                             <Row className="text-center ">
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
                                     <Form id="UserForm" onSubmit={this.onLoginHandler} className="onboardForm">
-                                        <h3 className="section-title mt-3">USER LOGIN</h3>
+                                        <h5 className="text-success text-center mb-5"><b>USER LOGIN</b></h5><hr/>
                                         <input value={this.state.username} onChange={(e)=>this.setState({username : e.target.value})} className="form-control m-2" type="text" placeholder="Username or Email..."/>
-                                        <input value={this.state.password} onChange={(e)=>this.setState({password : e.target.value})} className="form-control m-2" type="password" placeholder="User Password..."/>
+                                        <input value={this.state.password} onChange={(e)=>this.setState({password : e.target.value})} className="form-control m-2" type="password" id="password" placeholder="User Password..."/>
+                                        <button id="showHideBtn" onClick={this.passwordShowHide} type="button" className="btn showPassBtn"><i class="fa fa-eye"/></button>
+                                        <Form.Label className="remember-me">
+                                            <input onChange={this.RememberOnChange} type="checkbox" defaultChecked={this.state.isChecked}/> <span className="text-danger">Remember me </span>
+                                        </Form.Label>
                                         <Button type="submit" className="btn btn-block m-2 site-btn">Login</Button>
                                         <span className="text-danger" >No yet a registered? <Link to="/user_signup">Signup</Link></span><br/>
                                         <span><Link to="/forget_password">Forgotten Password?</Link></span>

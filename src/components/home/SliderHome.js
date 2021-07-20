@@ -24,7 +24,7 @@ class SliderHome extends React.Component{
                        <h1 style={{color: List.text_color}} className="slider-sub-title">
                            {List.subtitle}
                        </h1>
-                       <Link to={"/product_details/"+List.product_code} className="btn site-btn px-5">More</Link>
+                       <Link to={"/product_details/"+List.product_code} className="btn btn-success px-5">More</Link>
                    </div>
                    <div className="col-md-6 animated slideInDown text-center">
                        <img className="slider-img" src={List.image} alt="slider img"/>

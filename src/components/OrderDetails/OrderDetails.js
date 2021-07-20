@@ -115,7 +115,7 @@ class OrderDetails extends Component {
     
         return (
                 <Fragment>
-                   <Container className={this.state.MainDiv+" TopSection"}>
+                   <Container className={this.state.MainDiv+" TopSection animated slideInDown"}>
                     <Row  className="d-flex justify-content-center">
                         <Col  md={10} lg={10}  sm={12} xs={12}>
                             <Breadcrumb className="shadow-sm mt-2 bg-white">

@@ -96,7 +96,7 @@ class ForgetPassword extends Component {
     render() {
         return (
             <Fragment>
-                <Container className="TopSection">
+                <Container className="TopSection animated slideInDown">
                     <Row>
                         <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
@@ -108,7 +108,8 @@ class ForgetPassword extends Component {
                             <Row className="text-center ">
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
                                     <Form id="UserForm" onSubmit={this.onRecoveryHandler} className="onboardForm">
-                                        <h3 className="section-title">Password Recovery System</h3>
+                                        <h3 className="section-title"></h3>
+                                        <h5 className="text-danger text-center mb-5"><b>PASSWORD RECOVER</b></h5><hr/>
                                         <input onChange={(e)=>this.setState({email : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your valid email address..."/>
                                         <input onChange={(e)=>this.setState({password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your new password..."/>
                                         <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your confirm new password..."/>

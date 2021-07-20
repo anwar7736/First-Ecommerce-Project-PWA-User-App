@@ -33,8 +33,14 @@ class FooterMobile extends Component {
                     <Container fluid={true} className=" m-0 pt-3 pb-1 bg-dark">
                         <Container className="">
                             <Row className="px-0">
-                                <h6 className="text-white">WE DELIVER IN</h6>
-                                <p className="footer-text text-white">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. T </p>
+                               <Col className="text-center">
+                                    <h6 className="text-danger">&copy; Copyright 2020-2021</h6>
+                               </Col>
+                            </Row>
+                            <Row className="px-0">
+                                <Col className="text-center">
+                                     <p className="footer-text text-white">All Rights Reserved By Md Anwar Hossain</p>
+                                 </Col>
                             </Row>
                         </Container>
 

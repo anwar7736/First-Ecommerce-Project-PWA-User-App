@@ -91,7 +91,7 @@ class NavMenuDesktop extends React.Component{
                 <Container fluid={true} className="fixed-top shadow-sm p-2 m-0 bg-white" >
                     <Row>
                         <Col className="p-1" xl={4} lg={4} md={4} sm={12} xs={12}>
-                           <Link to="/" className="btn"> <img className="nav-logo" src="https://admin.coderanwar.com/storage/logo.png"/></Link>
+                           <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
                            <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
                              
                         </Col>
@@ -103,7 +103,7 @@ class NavMenuDesktop extends React.Component{
                         </Col> 
                          <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={12}>
                              <div className="input-group w-100">
-                             <Link to="/user_login" className="h4 btn btn-danger btn-sm p-2">LOGIN</Link>
+                             <Link to="/user_login" className="h4 btn btn-info btn-sm p-2">LOGIN</Link>
                              </div>
 
                         </Col>     
@@ -121,7 +121,7 @@ class NavMenuDesktop extends React.Component{
         <Container fluid={true} className="fixed-top shadow-sm p-2 m-0 bg-white" >
             <Row>
                 <Col className="p-1" xl={4} lg={4} md={4} sm={12} xs={12}>
-                   <Link to="/" className="btn"> <img className="nav-logo" src="../../../images/logo.png"/></Link>
+                   <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
                    <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
                      
                 </Col>
@@ -139,23 +139,23 @@ class NavMenuDesktop extends React.Component{
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item>
-                                 <Link to="/notification" className="btn"><i className="fa h4  fa-bell"></i> <sup><span className="badge text-white bg-danger">{this.state.notCount}</span></sup></Link>
+                                 <Link to="/notification" className="btn"><i className="fas h4 fa-bell"></i> <sup><span className="badge text-white bg-danger">{this.state.notCount}</span></sup></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/favourite" className="btn"><i className="fa h4 fa-heart"></i>  <sup><span className="badge text-white bg-danger">{this.state.favCount}</span></sup></Link>
+                                <Link to="/favourite" className="btn"><i className="fas h4 fa-heart"></i>  <sup><span className="badge text-white bg-danger">{this.state.favCount}</span></sup></Link>
                             </NavDropdown.Item> 
                             <NavDropdown.Item>
-                                <Link to="/order_details" className="btn"><i className="fa h4 fa-user"></i> Order List</Link>
+                                <Link to="/order_details" className="btn text-danger"><i className="fas fa-list"></i> Order List</Link>
                             </NavDropdown.Item>
                              <NavDropdown.Item>
-                                <Link to="/user_profile"><span className="text-success">My Profile</span></Link>
+                                <Link to="/user_profile"><span className="btn text-success"><i className="fa h4 fa-user"></i> My Profile</span></Link>
                             </NavDropdown.Item>
                             <NavDropdown.Item>
-                                <Link to="/change_password"><span className="text-danger">Change Password</span></Link>
+                                <Link to="/change_password"><span className="btn text-primary"><i class="fas fa-key"></i> Change Password</span></Link>
                             </NavDropdown.Item>
-                          
+                            <NavDropdown.Divider />
                             <NavDropdown.Item>
-                                <a onClick={this.onLogout} className="link">Logout</a>
+                                <a onClick={this.onLogout} className="link btn text-muted"><i class="fas fa-power-off"></i> Logout</a>
                             </NavDropdown.Item>
                             <NavDropdown.Divider />
                       </NavDropdown>  

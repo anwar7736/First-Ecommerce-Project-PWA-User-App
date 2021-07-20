@@ -60,3 +60,9 @@ a:hover{
     width: 120px;
     border: 1px solid red;
 }
+.HomePageTop{
+    margin-top: 85px;
+}
+.breadcrumb-nav{
+    margin-top: 60px;
+}

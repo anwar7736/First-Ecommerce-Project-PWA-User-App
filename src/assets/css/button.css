@@ -5,6 +5,9 @@
 .btn:focus {
     box-shadow: none;
 }
+.showPassBtn {
+    margin-right:442px !important;
+}
 .site-btn{
     font-weight: 300;
     font-family: 'Roboto Condensed', sans-serif;
@@ -100,4 +103,12 @@
     opacity: 0.32;
     transform: translate(-50%, -50%) scale(0);
     transition: transform 0s;
+}
+
+.remember-me{
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px !important;
 }

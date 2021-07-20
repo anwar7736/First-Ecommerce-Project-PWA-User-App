@@ -40,7 +40,7 @@ class HomeTop extends React.Component{
             <div className={this.state.isLoading}>
                 <SliderLoader/>
             </div>
-            <div className={this.state.mainDiv}>
+            <div className={this.state.mainDiv+ " animated slideInDown HomePageTop"}>
                 <Container lclassName="p-0 TopSection  overflow-hidden" fluid={true}>
                 <Row className="p-0 m-0 overflow-hidden">
                     <Col className="p-0 m-0 overflow-hidden" lg={3} md={3} sm={12} xs={12}>

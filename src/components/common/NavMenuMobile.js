@@ -107,11 +107,11 @@ class NavMenuMobile extends Component {
 
                 <a style={{cursor: 'pointer'}} onClick={this.MenuBarClickHandler} className=" mx-2 navbar-brand"><i className="fa fa-bars"></i></a>
                 <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
-                <Link to="/user_login" className="h4 btn btn-danger btn-sm">LOGIN</Link>
+                <Link to="/user_login" className="h4 btn btn-dark btn-sm m-2">LOGIN</Link>
 
             </Navbar>
                 <div  className={this.state.SideNavState}> 
-                    <Link to="/" className="btn"> <img className="nav-logo" src="../../images/logo.png"/></Link>
+                    <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
                     <hr/>
                     <MegaMenuMobile data={this.state.menuData}/>
                 </div>
@@ -133,28 +133,30 @@ class NavMenuMobile extends Component {
                 <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
                 <Link to="/favourite" className="btn"><i className="fa h4 fa-heart"></i>  <sup><span className="badge text-white bg-danger">{this.state.favCount}</span></sup></Link>
                 <Link to="/notification" className="btn"><i className="fa h4  fa-bell"></i> <sup><span className="badge text-white bg-danger">{this.state.notCount}</span></sup></Link>
-                                 <NavDropdown title={<img className="profile-photo" src={photo} />} id="navbarScrollingDropdown">
-                                 <NavDropdown.Item>
+                            <NavDropdown title={<img className="profile-photo" src={photo} />} id="navbarScrollingDropdown">
+                            <NavDropdown.Item>
                                    <span className="text-muted">{name}</span>
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item>
-                                <Link to="/order_details">Order List</Link>
-                                </NavDropdown.Item>
-                                <NavDropdown.Item>
-                                    <Link to="/user_profile">Profile</Link>
-                                </NavDropdown.Item>
-                                <NavDropdown.Item>
-                                    <Link to="/change_password">Change Password</Link>
-                                </NavDropdown.Item>
-                                <NavDropdown.Item>
-                                   <a onClick={this.onLogout} className="link">Logout</a>
-                                </NavDropdown.Item>
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item>
+                                <Link to="/order_details" className="btn text-danger"><i className="fas fa-list"></i> Order List</Link>
+                            </NavDropdown.Item>
+                             <NavDropdown.Item>
+                                <Link to="/user_profile"><span className="btn text-success"><i className="fa h4 fa-user"></i> My Profile</span></Link>
+                            </NavDropdown.Item>
+                            <NavDropdown.Item>
+                                <Link to="/change_password"><span className="btn text-primary"><i class="fas fa-key"></i> Change Password</span></Link>
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item>
+                                <a onClick={this.onLogout} className="link btn text-muted"><i class="fas fa-power-off"></i> Logout</a>
+                            </NavDropdown.Item>
+                            <NavDropdown.Divider />
                                 <NavDropdown.Divider />
                           </NavDropdown>   
             </Navbar>
                 <div  className={this.state.SideNavState}> 
-                    <Link to="/" className="btn"> <img className="nav-logo" src="../../images/logo.png"/></Link>
+                    <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
                     <hr/>
                     <MegaMenuMobile data={this.state.menuData}/>
                 </div>
