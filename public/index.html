@@ -25,5 +25,15 @@
         new google.translate.TranslateElement(config,translatedID);
       }
     </script>
+    
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "59db6bb8-5ab2-4082-90e4-64058dae0113",
+        });
+      });
+    </script>
   </body>
 </html>

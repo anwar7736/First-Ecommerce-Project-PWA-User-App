@@ -17,6 +17,7 @@ class UserSignup extends Component {
             phone : '',
             photo : '',
             password : '',
+            confirm_password : '',
             redirectStatus : false,
         }
     }
@@ -28,6 +29,7 @@ class UserSignup extends Component {
         let phone = this.state.phone;
         let photo = this.state.photo;
         let password = this.state.password;
+        let confirm_password = this.state.confirm_password;
         if(fullname.length==0)
         {
             cogoToast.error('Name is Required!');
@@ -86,6 +88,16 @@ class UserSignup extends Component {
         else if(password.length < 3)
         {
             cogoToast.error('Password is Too Short!');
+        } 
+        
+        else if(confirm_password.length==0)
+        {
+            cogoToast.error('Confirm Password is Required!');
+        }
+
+        else if(password!==confirm_password)
+        {
+            cogoToast.error('Both password does not match!');
         }
 
         else
@@ -146,10 +158,11 @@ class UserSignup extends Component {
                                         <input onChange={(e)=>this.setState({fullname : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your full name..."/>
                                         <input onChange={(e)=>this.setState({username : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your username..."/>
                                         <input onChange={(e)=>this.setState({email : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your valid email address..."/>
-                                        <input onChange={(e)=>this.setState({phone : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your valid mobile number..."/>
+                                        <input onChange={(e)=>this.setState({phone : e.target.value})} maxlength="11" className="form-control m-2" type="text" placeholder="Enter your valid mobile number..."/>
                                         <h6 className="float-left ml-3">Choose Profile Picture</h6>
                                         <input onChange={(e)=>this.setState({photo : e.target.files[0]})} className="form-control m-2" type="file" />
                                         <input onChange={(e)=>this.setState({password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your strong password..."/>
+                                        <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="confirm_password" placeholder="Enter your confirm password..."/>
                                         <Button type="submit" className="btn btn-block m-2 btn-success">SIGN UP</Button>
                                         <span className="text-danger">Already registered? <Link to="/user_login">Login</Link></span>
                                     </Form>

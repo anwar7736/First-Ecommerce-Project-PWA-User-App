@@ -5,13 +5,14 @@ import Axios from 'axios';
 import validation from '../../validation/validation';
 import ApiURL from '../../api/ApiURL';
 import cogoToast from 'cogo-toast';
+import emailjs from 'emailjs-com';
 
 class Contact extends React.Component{
     constructor(){
         super();
         this.state = {
             name : '',
-            mobile : '',
+            email : '',
             message : '',
             sendBtn : 'SEND',
         }
@@ -19,7 +20,7 @@ class Contact extends React.Component{
     onSendContactDetails=(event)=>{
         event.preventDefault();
         let name = this.state.name;
-        let mobile = this.state.mobile;
+        let email = this.state.email;
         let message = this.state.message;
         let contactForm = document.getElementById('contactForm');
         
@@ -33,14 +34,14 @@ class Contact extends React.Component{
             cogoToast.error('Name is Invalid');
         }
 
-        else if(mobile.length==0)
+        else if(email.length==0)
         {
-            cogoToast.error('Mobile Number is Required');
+            cogoToast.error('Email Address is Required');
         } 
 
-        else if(!validation.MobileRegx.test(mobile))
+        else if(!validation.EmailRegx.test(email))
         {
-            cogoToast.error('Mobile Number is Invalid');
+            cogoToast.error('Email Address is Invalid');
         }
 
         else if(message.length==0)
@@ -52,16 +53,21 @@ class Contact extends React.Component{
             this.setState({sendBtn: 'SENDING...'})
             let contactData = new FormData();
             contactData.append('name', name);
-            contactData.append('mobile', mobile);
+            contactData.append('email', email);
             contactData.append('message', message);
 
             Axios.post(ApiURL.SendContactDetails, contactData)
             .then(response=>{
                 if(response.status==200 && response.data==1)
                 {
-                    cogoToast.success("Message has been sent");
-                    contactForm.reset();
-                    this.setState({sendBtn: 'SEND'})
+                    emailjs.sendForm('ecom_service', 'ecom_template', event.target, 'user_GWJf11gBKZ4agSRdJb6VN')
+                    .then((result) => {
+                          cogoToast.success("Message has been sent");
+                          contactForm.reset();
+                          this.setState({sendBtn: 'SEND'})
+                    }, (error) => {
+                        
+                    });
                 }
             })
             .catch(error=>{
@@ -89,10 +95,10 @@ class Contact extends React.Component{
                                 <Col className="d-flex justify-content-center" md={6} lg={6} sm={12} xs={12}>
                                     <Form id="contactForm" onSubmit={this.onSendContactDetails} className=" onboardForm">
                                         <h4 className="section-title">CONTACT WITH US</h4>
-                                        <h6 className="section-sub-title">Please Enter Your Mobile No, And Go Next</h6>
+                                        <h6 className="section-sub-title">Please Enter Your email No, And Go Next</h6>
                                         <input name="name" onChange={(event)=> this.setState({name: event.target.value})} className="form-control m-2" type="text" placeholder="Your Name"/>
-                                        <input name="mobile" onChange={(event)=> this.setState({mobile: event.target.value})} className="form-control m-2" type="text" placeholder="Mobile Number"/>
-                                        <input name="message" onChange={(event)=> this.setState({message: event.target.value})} className="form-control m-2" type="text" placeholder="Message"/>
+                                        <input name="email" onChange={(event)=> this.setState({email: event.target.value})} className="form-control m-2" type="text" placeholder="Your Email Address"/>
+                                        <textarea rows="4" name="message" onChange={(event)=> this.setState({message: event.target.value})} className="form-control m-2" type="text" placeholder="Please Write Something..."/>
                                         <Button type="submit" className="btn btn-block m-2 site-btn">{this.state.sendBtn}</Button>
                                     </Form>
                                 </Col>

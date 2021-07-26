@@ -113,7 +113,7 @@ class ProductDetails extends Component {
         {
               cogoToast.error('Please Choose Quantity', {position : 'bottom-center'});
         }
-
+        else{
         let MyForm = new FormData();
         MyForm.append('user_id', user_id);
         MyForm.append('product_code', product_code);
@@ -136,6 +136,7 @@ class ProductDetails extends Component {
              //cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
         })
         }
+     }
         else
         {
             this.setState({pageRedirectStatus:true});
