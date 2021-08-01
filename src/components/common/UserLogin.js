@@ -154,7 +154,7 @@ RememberOnChange=()=>{
                                         </Form.Label>
                                         <Button type="submit" className="btn btn-block m-2 site-btn">Login</Button>
                                         <span className="text-danger" >No yet a registered? <Link to="/user_signup">Signup</Link></span><br/>
-                                        <span><Link to="/forget_password">Forgotten Password?</Link></span>
+                                        <span><Link to="/email_verification">Forgotten Password?</Link></span>
                                     </Form>
                                 </Col>
                          

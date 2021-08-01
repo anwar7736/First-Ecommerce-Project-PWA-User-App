@@ -5,6 +5,8 @@ import HomePage from '../pages/HomePage';
 import UserSignupPage from '../pages/UserSignupPage';
 import UserLoginPage from '../pages/UserLoginPage';
 import UserProfilePage from '../pages/UserProfilePage';
+import EmailVerifyPage from '../pages/EmailVerifyPage';
+import OTPVerifyPage from '../pages/OTPVerifyPage';
 import ForgetPasswordPage from '../pages/ForgetPasswordPage';
 import ChangePasswordPage from '../pages/ChangePasswordPage';
 import ContactPage from '../pages/ContactPage';
@@ -29,6 +31,8 @@ class Routes extends React.Component{
                 <Route exact path="/user_signup" render={(props)=> <UserSignupPage {...props} key={ Date.now() } />} />
                 <Route exact path="/user_login" render={(props)=> <UserLoginPage {...props} key={ Date.now() } />} />
                 <Route exact path="/user_profile" render={(props)=> <UserProfilePage {...props} key={ Date.now() } />} />
+                <Route exact path="/email_verification" render={(props)=> <EmailVerifyPage {...props} key={ Date.now() } />} />
+                <Route exact path="/otp_verification" render={(props)=> <OTPVerifyPage {...props} key={ Date.now() } />} />
                 <Route exact path="/forget_password" render={(props)=> <ForgetPasswordPage {...props} key={ Date.now() } />} />
                 <Route exact path="/change_password" render={(props)=> <ChangePasswordPage {...props} key={ Date.now() } />} />
                 <Route exact path="/product_details/:product_code" render={(props)=> <ProductDetailsPage {...props} key={ Date.now() } />} />

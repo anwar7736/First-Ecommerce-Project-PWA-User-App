@@ -162,7 +162,7 @@ class UserSignup extends Component {
                                         <h6 className="float-left ml-3">Choose Profile Picture</h6>
                                         <input onChange={(e)=>this.setState({photo : e.target.files[0]})} className="form-control m-2" type="file" />
                                         <input onChange={(e)=>this.setState({password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your strong password..."/>
-                                        <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="confirm_password" placeholder="Enter your confirm password..."/>
+                                        <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your confirm password..."/>
                                         <Button type="submit" className="btn btn-block m-2 btn-success">SIGN UP</Button>
                                         <span className="text-danger">Already registered? <Link to="/user_login">Login</Link></span>
                                     </Form>

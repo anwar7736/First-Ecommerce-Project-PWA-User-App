@@ -7,7 +7,7 @@ import validation from '../../validation/validation';
 import Axios from 'axios';
 import ApiURL from '../../api/ApiURL';
 
-class ForgetPassword extends Component {
+class EmailVerify extends Component {
     constructor(){
         super();
         this.state = {
@@ -100,7 +100,7 @@ class ForgetPassword extends Component {
                     <Row>
                         <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
-                          <Breadcrumb.Item><Link to="/forget_password">Forget Password</Link></Breadcrumb.Item>
+                          <Breadcrumb.Item><Link to="/forget_password">Email Verification</Link></Breadcrumb.Item>
                         </Breadcrumb>
                     </Row>
                     <Row className="p-0">
@@ -109,12 +109,10 @@ class ForgetPassword extends Component {
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
                                     <Form id="UserForm" onSubmit={this.onRecoveryHandler} className="onboardForm">
                                         <h3 className="section-title"></h3>
-                                        <h5 className="text-danger text-center mb-5"><b>Step 03 : PASSWORD RESET</b></h5><hr/>
-                                        <input className="form-control m-2" type="email" value="example@gmail.com" disabled/>
-                                        <input onChange={(e)=>this.setState({password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your new password..."/>
-                                        <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your confirm password..."/>
-                                        <Button type="submit" className="btn btn-block m-2 btn-info">UPDATE</Button>
-                                        <span className="text-danger">Already registered? <Link to="/user_login">Login</Link></span>
+                                        <h5 className="text-danger text-center mb-5"><b>Step 01 : Email Verification</b></h5><hr/>
+                                        <input onChange={(e)=>this.setState({email : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your valid email address..."/>
+                                        <Button type="submit" className="btn btn-block m-2 btn-success">VERIFY</Button>
+                                        <Link className="text-danger" to="/user_login">Back to Login</Link>
                                     </Form>
                                 </Col>
                          
@@ -128,4 +126,4 @@ class ForgetPassword extends Component {
     }
 }
 
-export default ForgetPassword;
+export default EmailVerify;

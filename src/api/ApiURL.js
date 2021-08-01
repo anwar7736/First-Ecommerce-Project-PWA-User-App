@@ -6,6 +6,8 @@ class ApiURL{
 	static GetCategoryDetails = this.baseURL + "GetCategoryInfo";
 	static GetSliderInfo = this.baseURL + "GetSliderInfo";
 	static UserRegistration = this.baseURL + "UserRegistration";
+	static EmailVerification = this.baseURL + "EmailVerification";
+	static OTPVerification = this.baseURL + "OTPVerification";
 	static ForgetPassword = this.baseURL + "ForgetPassword";
 	static ChangePassword = this.baseURL + "ChangePassword";
 	static UserLogin = this.baseURL + "UserLogin";
