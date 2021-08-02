@@ -99,7 +99,9 @@ class NavMenuDesktop extends React.Component{
                                 <div className="input-group w-100">
                                 <input onChange={this.SearchOnChange} type="search" className="form-control-search" aria-label="Text input with segmented dropdown button"/>
                                 <button onClick={this.SearchOnClick} type="button" placeholder="Search Here...." className="btn site-btn"><i className="fa fa-search"></i></button>
-                                        </div>
+                                <span id="current_date" className="ml-4 text-success"></span>
+                                <span id="current_time" className="ml-4 text-danger"></span>
+                               </div>
                         </Col> 
                          <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={12}>
                              <div className="input-group w-100">
@@ -123,16 +125,20 @@ class NavMenuDesktop extends React.Component{
                 <Col className="p-1" xl={4} lg={4} md={4} sm={12} xs={12}>
                    <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
                    <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
-                     
+                   
                 </Col>
                 <Col className="p-1" xl={5} lg={5} md={5} sm={12} xs={12}>
                         <div className="input-group w-100">
                         <input onChange={this.SearchOnChange} type="search" className="form-control-search" aria-label="Text input with segmented dropdown button"/>
                         <button onClick={this.SearchOnClick} type="button" placeholder="Search Here...." className="btn site-btn"><i className="fa fa-search"></i></button>
-                                </div>
+                        <span id="current_date" className="ml-4 text-success"></span>
+                        <span id="current_time" className="ml-4 text-danger"></span>
+                        </div>
+                        
                 </Col> 
                  <Col className="p-0" xl={3} lg={3} md={3} sm={6} xs={12}>
                      <div className="input-group w-100">
+                     <span id="current_date" className="m-2 text-success"></span>
                          <NavDropdown title={<img className="profile-photo" src={photo}/>} id="navbarScrollingDropdown">
                              <NavDropdown.Item>
                                 <span className="text-muted">{name}</span>

@@ -36,7 +36,71 @@
           appId: "59db6bb8-5ab2-4082-90e4-64058dae0113",
         });
       });
- 
+      setInterval(currentDate);
+      setInterval(currentTime);
+      function currentDate()
+      {
+        var date = new Date();
+        var year = date.getFullYear();
+        var months = ['Jan','Feb','Mar','Apr','May','Jun','July','Aug','Sep','Oct','Nov','Dec',];
+        var month = months[date.getMonth()];
+        var date = date.getDate();
+        if(date < 10)
+        {
+          date = '0' + date;
+        }
+         document.getElementById('current_date').innerHTML = date + " " + month + " " + year;
+         document.getElementById('current_date2').innerHTML = date + " " + month + " " + year;
+      } 
+
+      function currentTime()
+      {
+        var date = new Date();
+        var en = '';
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        if(hour < 10)
+        {
+          hour = '0' + hour;
+        }
+        
+        if(min < 10)
+        {
+          min = '0' + min;
+        }
+        
+        if(sec < 10)
+        {
+          sec = '0' + sec;
+        }
+        
+        if(hour < 12)
+        {
+          en = 'AM';
+        }
+        
+        else
+        {
+          en = 'PM';
+        }
+
+        if(hour > 12)
+        {
+          hour = hour - 12;
+          hour = '0' + hour;
+        }
+
+        if(hour==0)
+        {
+          hour = 12;
+        }
+        
+         document.getElementById('current_time').innerHTML = hour + ':' + min + ':' +sec + ' ' + en;
+         document.getElementById('current_time2').innerHTML = hour + ':' + min + ':' +sec + ' ' + en;
+      }
+     
     </script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6051f46b44afa686"></script>
   </body>
 </html>
