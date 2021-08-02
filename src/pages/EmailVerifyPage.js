@@ -22,6 +22,16 @@ class EmailVerifyPage extends React.Component{
         if(SessionHelper.getIdSession()!==null)
         {
             this.setState({redirectStatus:true})
+        } 
+        
+        if(localStorage.getItem('email_verified')!=null)
+        {
+            localStorage.removeItem('email_verified');
+        }
+        
+        if(localStorage.getItem('otp_verified')!=null)
+        {
+            localStorage.removeItem('otp_verified');
         }
     }
     RedirectToHome=()=>{

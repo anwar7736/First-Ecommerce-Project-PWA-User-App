@@ -12,17 +12,12 @@ class EmailVerify extends Component {
         super();
         this.state = {
             email : '',
-            password : '',
-            confirm_password : '',
             redirectStatus : false,
         }
     }
-    onRecoveryHandler=(event)=>{
+    onEmailHandler=(event)=>{
         event.preventDefault();
         let email = this.state.email;
-        let password = this.state.password;
-        let confirm_password = this.state.confirm_password;
-
         if(email.length==0)
         {
             cogoToast.error('Email Address is Required!');
@@ -33,45 +28,20 @@ class EmailVerify extends Component {
              cogoToast.error('Invalid Email Address!');
         }
 
-        else if(password.length==0)
-        {
-            cogoToast.error('New Password is Required!');
-        } 
-
-        else if(password.length < 3)
-        {
-            cogoToast.error('New Password is Too Short!');
-        } 
-
-        else if(confirm_password.length==0)
-        {
-            cogoToast.error('Confirm Password is Required!');
-        } 
-
-        else if(confirm_password.length < 3)
-        {
-            cogoToast.error('Confirm Password is Too Short!');
-        } 
-
-        else if(password!=confirm_password)
-        {
-            cogoToast.error('Both Password does not match!');
-        }
-
         else
         {
             let MyForm = new FormData();
             MyForm.append('email', email);
-            MyForm.append('password', password);
-
-            Axios.post(ApiURL.ForgetPassword, MyForm)
+            Axios.post(ApiURL.EmailVerification, MyForm)
             .then(response=>{
                 if(response.status==200 && response.data==1)
                 {
-                    cogoToast.success('Password Recover Successfully');
+                    cogoToast.success('Please check your email!');
                     setTimeout(()=>{
+                        
+                        localStorage.setItem('email_verified', email);
                         this.setState({redirectStatus : true});
-                    },3000);
+                    },2000);
                     
                     document.getElementById('UserForm').reset();
                 }
@@ -86,10 +56,10 @@ class EmailVerify extends Component {
         }
         
     }
-    onRedirectLogin=()=>{
+    onRedirectToOTPPage=()=>{
         if(this.state.redirectStatus===true){
             return (
-                    <Redirect to="/user_login" />
+                    <Redirect to="/otp_verification" />
                    );
         }
     }
@@ -100,16 +70,17 @@ class EmailVerify extends Component {
                     <Row>
                         <Breadcrumb className=" shadow-sm w-100 bg-white mt-3">
                           <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
-                          <Breadcrumb.Item><Link to="/forget_password">Email Verification</Link></Breadcrumb.Item>
+                          <Breadcrumb.Item><Link to="/email_verification">Email Verification</Link></Breadcrumb.Item>
                         </Breadcrumb>
                     </Row>
                     <Row className="p-0">
                         <Col className="offset-md-3 shadow-sm bg-white mt-1" md={6} lg={6} sm={12} xs={12}>
                             <Row className="text-center ">
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
-                                    <Form id="UserForm" onSubmit={this.onRecoveryHandler} className="onboardForm">
+                                    <Form id="UserForm" onSubmit={this.onEmailHandler} className="onboardForm">
                                         <h3 className="section-title"></h3>
                                         <h5 className="text-danger text-center mb-5"><b>Step 01 : Email Verification</b></h5><hr/>
+
                                         <input onChange={(e)=>this.setState({email : e.target.value})} className="form-control m-2" type="text" placeholder="Enter your valid email address..."/>
                                         <Button type="submit" className="btn btn-block m-2 btn-success">VERIFY</Button>
                                         <Link className="text-danger" to="/user_login">Back to Login</Link>
@@ -120,7 +91,7 @@ class EmailVerify extends Component {
                         </Col>
                     </Row>
                 </Container>
-                {this.onRedirectLogin()}
+                {this.onRedirectToOTPPage()}
             </Fragment>
         );
     }

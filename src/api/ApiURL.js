@@ -8,6 +8,7 @@ class ApiURL{
 	static UserRegistration = this.baseURL + "UserRegistration";
 	static EmailVerification = this.baseURL + "EmailVerification";
 	static OTPVerification = this.baseURL + "OTPVerification";
+	static GetOTPExpiration = this.baseURL + "GetOTPExpiration";
 	static ForgetPassword = this.baseURL + "ForgetPassword";
 	static ChangePassword = this.baseURL + "ChangePassword";
 	static UserLogin = this.baseURL + "UserLogin";

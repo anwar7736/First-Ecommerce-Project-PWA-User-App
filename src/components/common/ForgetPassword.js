@@ -17,23 +17,24 @@ class ForgetPassword extends Component {
             redirectStatus : false,
         }
     }
+    componentDidMount() {  
+       
+        let email = localStorage.getItem('otp_verified');
+
+        if(email!=null)
+        {
+            this.setState({email : email});
+        }
+
+    }
+
     onRecoveryHandler=(event)=>{
         event.preventDefault();
         let email = this.state.email;
         let password = this.state.password;
         let confirm_password = this.state.confirm_password;
 
-        if(email.length==0)
-        {
-            cogoToast.error('Email Address is Required!');
-        }
-        
-        else if(!validation.EmailRegx.test(email))
-        {
-             cogoToast.error('Invalid Email Address!');
-        }
-
-        else if(password.length==0)
+        if(password.length==0)
         {
             cogoToast.error('New Password is Required!');
         } 
@@ -46,11 +47,6 @@ class ForgetPassword extends Component {
         else if(confirm_password.length==0)
         {
             cogoToast.error('Confirm Password is Required!');
-        } 
-
-        else if(confirm_password.length < 3)
-        {
-            cogoToast.error('Confirm Password is Too Short!');
         } 
 
         else if(password!=confirm_password)
@@ -70,14 +66,17 @@ class ForgetPassword extends Component {
                 {
                     cogoToast.success('Password Recover Successfully');
                     setTimeout(()=>{
+                        localStorage.removeItem('otp_verified');
+                        localStorage.removeItem('user');
+                        localStorage.removeItem('pass');
                         this.setState({redirectStatus : true});
-                    },3000);
+                    },2000);
                     
                     document.getElementById('UserForm').reset();
                 }
                 else
                 {
-                    cogoToast.error(response.data);
+                    cogoToast.error('Email address does not exists.');
                 }
             })
             .catch(error=>{
@@ -86,7 +85,7 @@ class ForgetPassword extends Component {
         }
         
     }
-    onRedirectLogin=()=>{
+    onRedirectToLogin=()=>{
         if(this.state.redirectStatus===true){
             return (
                     <Redirect to="/user_login" />
@@ -110,11 +109,11 @@ class ForgetPassword extends Component {
                                     <Form id="UserForm" onSubmit={this.onRecoveryHandler} className="onboardForm">
                                         <h3 className="section-title"></h3>
                                         <h5 className="text-danger text-center mb-5"><b>Step 03 : PASSWORD RESET</b></h5><hr/>
-                                        <input className="form-control m-2" type="email" value="example@gmail.com" disabled/>
+                                        <input className="form-control m-2" type="email" value={this.state.email} disabled/>
                                         <input onChange={(e)=>this.setState({password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your new password..."/>
                                         <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your confirm password..."/>
                                         <Button type="submit" className="btn btn-block m-2 btn-info">UPDATE</Button>
-                                        <span className="text-danger">Already registered? <Link to="/user_login">Login</Link></span>
+                                        <span className="text-danger">Remember Password? <Link to="/user_login">Login</Link></span>
                                     </Form>
                                 </Col>
                          
@@ -122,7 +121,7 @@ class ForgetPassword extends Component {
                         </Col>
                     </Row>
                 </Container>
-                {this.onRedirectLogin()}
+                {this.onRedirectToLogin()}
             </Fragment>
         );
     }

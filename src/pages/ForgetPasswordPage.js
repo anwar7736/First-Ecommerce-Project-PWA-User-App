@@ -14,6 +14,7 @@ class ForgetPasswordPage extends React.Component{
         super();
         this.state = {
             redirectStatus : false,
+            status : false,
         }
     }
     componentDidMount() {
@@ -23,6 +24,12 @@ class ForgetPasswordPage extends React.Component{
         {
             this.setState({redirectStatus:true})
         }
+
+        if(localStorage.getItem('otp_verified')==null)
+        {
+            this.setState({status:true})
+        }
+
     }
     RedirectToHome=()=>{
         if(this.state.redirectStatus===true)
@@ -32,6 +39,16 @@ class ForgetPasswordPage extends React.Component{
             )
         }
 }
+
+RedirectToOTPVerify=()=>{
+    if(this.state.status===true)
+    {
+         return(
+            <Redirect to="/otp_verification" />
+        )
+    }
+}
+
  render() {
     return (
         <Fragment>
@@ -51,6 +68,7 @@ class ForgetPasswordPage extends React.Component{
                 <FooterMobile/>
             </div>
             {this.RedirectToHome()}
+            {this.RedirectToOTPVerify()}
         </Fragment>
     );
   }

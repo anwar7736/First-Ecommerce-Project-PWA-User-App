@@ -14,6 +14,7 @@ class OTPVerifyPage extends React.Component{
         super();
         this.state = {
             redirectStatus : false,
+            status : false,
         }
     }
     componentDidMount() {
@@ -22,7 +23,14 @@ class OTPVerifyPage extends React.Component{
         if(SessionHelper.getIdSession()!==null)
         {
             this.setState({redirectStatus:true})
+        } 
+        
+        if(localStorage.getItem('email_verified')==null)
+        {
+            this.setState({status:true})
         }
+
+
     }
     RedirectToHome=()=>{
         if(this.state.redirectStatus===true)
@@ -31,6 +39,15 @@ class OTPVerifyPage extends React.Component{
                 <Redirect to="/" />
             )
         }
+}
+
+RedirectToEmailVerify=()=>{
+    if(this.state.status===true)
+    {
+         return(
+            <Redirect to="/email_verification" />
+        )
+    }
 }
  render() {
     return (
@@ -51,6 +68,7 @@ class OTPVerifyPage extends React.Component{
                 <FooterMobile/>
             </div>
             {this.RedirectToHome()}
+            {this.RedirectToEmailVerify()}
         </Fragment>
     );
   }
