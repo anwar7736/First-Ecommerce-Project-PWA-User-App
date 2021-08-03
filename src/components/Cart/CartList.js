@@ -34,9 +34,17 @@ class CartList extends React.Component{
         })
         .catch(error=>{
 
-        })
+        })    
+        
+        var phone = localStorage.getItem('phone')
+        if(phone!==null)
+        {
+            this.setState({customer_mobile : phone});
+        } 
        
     }
+
+
 
     cityOnchange=(e)=>
     {
@@ -295,16 +303,16 @@ class CartList extends React.Component{
                                                     </div>
                                                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                         <label className="form-label">Your Full Name</label>
-                                                        <input onChange={(e)=>this.setState({customer_name:e.target.value})} className="form-control" type="text" placeholder=""/>
+                                                        <input onChange={(e)=>this.setState({customer_name:e.target.value})} className="form-control" type="text" placeholder="Enter your full name..."/>
                                                     </div> 
                                                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                         <label className="form-label">Your Current Mobile Number</label>
-                                                        <input onChange={(e)=>this.setState({customer_mobile:e.target.value})} className="form-control" type="text" placeholder=""/>
+                                                        <input maxlength="11" value={this.state.customer_mobile} onChange={(e)=>this.setState({customer_mobile:e.target.value})} className="form-control" type="text" placeholder="Enter your current mobile number..."/>
                                                     </div>
 
                                                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                         <label className="form-label">Your Current Address</label>
-                                                        <textarea onChange={(e)=>this.setState({current_address:e.target.value})} rows={2}  className="form-control" type="text" placeholder=""/>
+                                                        <textarea onChange={(e)=>this.setState({current_address:e.target.value})} rows={2}  className="form-control" type="text" placeholder="Enter your current address..."/>
                                                     </div>
                                                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                         <button onClick={this.onConfirmOrder} className="btn btn-block btn-success">Confirm Order</button>

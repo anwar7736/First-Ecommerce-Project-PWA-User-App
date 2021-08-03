@@ -13,6 +13,7 @@ class ContactPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Contact Us</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

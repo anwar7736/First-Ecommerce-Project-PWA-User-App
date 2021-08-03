@@ -13,6 +13,7 @@ class PurchasePage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>How To Purchase</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

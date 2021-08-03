@@ -35,6 +35,7 @@ class NotificationPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Notification</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

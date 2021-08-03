@@ -45,6 +45,7 @@ class EmailVerifyPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Email Verification</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

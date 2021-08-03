@@ -12,6 +12,7 @@ class ApiURL{
 	static ForgetPassword = this.baseURL + "ForgetPassword";
 	static ChangePassword = this.baseURL + "ChangePassword";
 	static UserLogin = this.baseURL + "UserLogin";
+	static LoginWithGoogle = this.baseURL + "LoginWithGoogle";
 	static AddToFavourite = this.baseURL + "AddToFavourite";
 	static AddToCart = this.baseURL + "AddToCart";
 	static ItemQtyIncrease = this.baseURL + "ItemQtyIncrease";

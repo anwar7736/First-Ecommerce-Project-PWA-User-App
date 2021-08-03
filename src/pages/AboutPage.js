@@ -13,6 +13,7 @@ class AboutPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>About Us</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

@@ -35,6 +35,7 @@ RedirectToHome=()=>{
  render() {
     return (
         <Fragment>
+            <title>Change Password</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

@@ -54,6 +54,7 @@ class FavouritePage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Favourite</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

@@ -52,6 +52,7 @@ RedirectToEmailVerify=()=>{
  render() {
     return (
         <Fragment>
+            <title>OTP Verification</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

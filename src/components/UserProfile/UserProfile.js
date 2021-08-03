@@ -106,8 +106,13 @@ class UserProfile extends Component {
             MyForm.append('photo', photo);
 
             Axios.post(ApiURL.UpdateProfile, MyForm)
-            .then(response=>{
-                if(response.status==200 && response.data!=0)
+            .then(response=>{                
+                if(typeof response.data === 'string')
+                {
+                    cogoToast.error(response.data);
+                }
+
+                else if(response.status==200 && response.data!=0)
                 {
                     this.setState({PageRefreshStatus:true})
                     cogoToast.success('Your profile updated successfully..');
@@ -176,7 +181,7 @@ class UserProfile extends Component {
                                                     </div> 
                                                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">
                                                         <label className="form-label">Your Mobile Number</label>
-                                                        <input value={this.state.phone} onChange={(e)=>this.setState({phone:e.target.value})} className="form-control" type="text" placeholder=""/>
+                                                        <input maxlength="11" value={this.state.phone} onChange={(e)=>this.setState({phone:e.target.value})} className="form-control" type="text" placeholder=""/>
                                                     </div>
 
                                                     <div className="col-md-12 p-1 col-lg-12 col-sm-12 col-12">

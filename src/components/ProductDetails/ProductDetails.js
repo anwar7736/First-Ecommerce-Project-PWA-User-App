@@ -331,6 +331,7 @@ class ProductDetails extends Component {
             }
           return (
             <Fragment>
+                <title>Product Details</title>
                 <Container  className="BetweenTwoSection animated slideInDown">
                     <Row className="p-2">
                         <Breadcrumb className="shadow-sm w-100 bg-white breadcrumb-nav">

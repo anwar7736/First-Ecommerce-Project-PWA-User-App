@@ -52,6 +52,7 @@ RedirectToOTPVerify=()=>{
  render() {
     return (
         <Fragment>
+            <title>Forget Password</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

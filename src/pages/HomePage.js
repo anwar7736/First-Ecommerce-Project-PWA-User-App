@@ -21,6 +21,7 @@ class HomePage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>E-Commerce App</title>
             <div className="Mobile">
                 <NavMenuMobile/>
                 <HomeTopMobile/>

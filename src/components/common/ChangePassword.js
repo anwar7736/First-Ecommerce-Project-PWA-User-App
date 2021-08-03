@@ -16,8 +16,18 @@ class ChangePassword extends Component {
             new_password : '',
             confirm_password : '',
             redirectStatus : false,
+            oldPassStatus : false,
         }
     }
+
+    componentDidMount(){
+        let pass = localStorage.getItem('pass')
+        if(pass!==null)
+        {
+            this.setState({old_password : pass, oldPassStatus: true});
+        } 
+    }
+    
     onUpdateHandler=(event)=>{
         event.preventDefault();
         let email = SessionHelper.getEmailSession();
@@ -120,7 +130,7 @@ class ChangePassword extends Component {
                                 <Col className="" md={12} lg={12} sm={12} xs={12}>
                                     <Form id="UserForm" onSubmit={this.onUpdateHandler} className="onboardForm">
                                         <h5 className="text-secondary text-center mb-5"><b>CHANGE PASSWORD</b></h5><hr/>
-                                        <input onChange={(e)=>this.setState({old_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your old password..."/>
+                                        <input readOnly={this.state.oldPassStatus} value={this.state.old_password} onChange={(e)=>this.setState({old_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your old password..."/>
                                         <input onChange={(e)=>this.setState({new_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your new password..."/>
                                         <input onChange={(e)=>this.setState({confirm_password : e.target.value})} className="form-control m-2" type="password" placeholder="Enter your confirm new password..."/>
                                         <Button type="submit" className="btn btn-block m-2 btn-success">UPDATE NOW</Button>

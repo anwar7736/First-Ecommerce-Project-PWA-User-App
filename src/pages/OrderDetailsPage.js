@@ -45,6 +45,7 @@ class OrderDetailsPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Order Details</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

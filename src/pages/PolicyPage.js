@@ -13,6 +13,7 @@ class PolicyPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Privacy Policy</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

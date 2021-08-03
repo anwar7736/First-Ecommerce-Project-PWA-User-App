@@ -35,6 +35,7 @@ class UserSignupPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>User Registration</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

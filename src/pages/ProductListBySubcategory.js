@@ -33,6 +33,7 @@ class ProductListBySubcategory extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Product List By Subcategory</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

@@ -35,6 +35,7 @@ class UserLoginPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>User Login</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

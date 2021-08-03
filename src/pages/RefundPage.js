@@ -13,6 +13,7 @@ class RefundPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Refund Policy</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

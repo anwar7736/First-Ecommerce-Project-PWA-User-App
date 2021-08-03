@@ -107,8 +107,8 @@ class NavMenuMobile extends Component {
 
                 <a style={{cursor: 'pointer'}} onClick={this.MenuBarClickHandler} className=" mx-2 navbar-brand"><i className="fa fa-bars"></i></a>
                 <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
-                <Link to="/user_login" className="h4 btn btn-dark btn-sm m-2">LOGIN</Link>
-                <span id="current_date2" className="ml-2 text-muted"></span>
+                <Link to="/user_login" className="h4 btn btn-success btn-sm m-2">LOGIN</Link>
+                <span id="current_date2" className="ml-2 text-danger"></span>
                 <span id="current_time2" className="ml-3 text-success"></span>  
 
             </Navbar>
@@ -159,7 +159,7 @@ class NavMenuMobile extends Component {
                             <NavDropdown.Divider />
                                 <NavDropdown.Divider />
                           </NavDropdown> 
-                          <span id="current_date2" className="ml-2 text-muted"></span>
+                          <span id="current_date2" className="ml-2 text-danger"></span>
                           <span id="current_time2" className="ml-3 text-success"></span>  
             </Navbar>
                 <div  className={this.state.SideNavState}> 

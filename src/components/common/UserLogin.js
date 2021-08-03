@@ -7,6 +7,10 @@ import validation from '../../validation/validation';
 import Axios from 'axios';
 import ApiURL from '../../api/ApiURL';
 import SessionHelper from '../../SessionHelper/SessionHelper';
+import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
+import GitHubLogin from 'react-github-login';
+import axios from 'axios';
 
 class UserLogin extends Component {
       constructor(){
@@ -130,6 +134,34 @@ RememberOnChange=()=>{
         this.setState({isChecked : false});
     }
 }
+  LoginWithGoogle = (response) => {
+    var name = response.profileObj.name;
+    var email = response.profileObj.email;    
+    var phone = "01700000000";
+    var photo = response.profileObj.imageUrl;
+    
+    var MyForm = new FormData();
+    MyForm.append('name', name);
+    MyForm.append('email', email);
+    MyForm.append('phone', phone);
+    MyForm.append('photo', photo);
+    
+    axios.post(ApiURL.LoginWithGoogle, MyForm)
+    .then(response=>{
+        SessionHelper.setIdSession(response.data.id);
+        SessionHelper.setNameSession(response.data.name);
+        SessionHelper.setEmailSession(response.data.email);
+        SessionHelper.setPhoneSession(response.data.phone);
+        SessionHelper.setPhotoSession(response.data.photo);
+        localStorage.setItem('pass', response.data.pass);
+
+        this.setState({redirectStatus : true});
+    })
+    .catch(error=>{
+
+    })
+  }
+
     render() {
         return (
             <Fragment>
@@ -153,6 +185,14 @@ RememberOnChange=()=>{
                                             <input onChange={this.RememberOnChange} type="checkbox" defaultChecked={this.state.isChecked}/> <span className="text-danger">Remember me </span>
                                         </Form.Label>
                                         <Button type="submit" className="btn btn-block m-2 site-btn">Login</Button>
+                                        <GoogleLogin
+                                            clientId="988510399972-nis8au1eeguae63tmg3p8bcr380kdkqs.apps.googleusercontent.com"
+                                            buttonText="Login With Your Google Account"
+                                            onSuccess={this.LoginWithGoogle}
+                                            onFailure={this.LoginWithGoogle}
+                                            cookiePolicy={'single_host_origin'}
+                                            className='btn btn-block m-2 text-success'
+                                        /><br/>
                                         <span className="text-danger" >No yet a registered? <Link to="/user_signup">Signup</Link></span><br/>
                                         <span><Link to="/email_verification">Forgotten Password?</Link></span>
                                     </Form>

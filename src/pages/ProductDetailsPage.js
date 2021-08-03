@@ -56,6 +56,7 @@ class RefundPage extends React.Component{
    else{
      return (
         <Fragment>
+            <title>Product Details</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

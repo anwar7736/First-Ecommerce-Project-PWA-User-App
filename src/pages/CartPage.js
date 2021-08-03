@@ -33,6 +33,7 @@ class CartPage extends React.Component{
  render() {
     return (
         <Fragment>
+            <title>Cart List</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>

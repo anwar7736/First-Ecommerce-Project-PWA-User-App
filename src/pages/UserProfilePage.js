@@ -38,6 +38,7 @@ RedirectToHome=()=>{
  render() {
     return (
         <Fragment>
+            <title>Your Profile</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>
