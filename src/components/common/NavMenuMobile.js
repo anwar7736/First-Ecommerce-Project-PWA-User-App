@@ -113,7 +113,7 @@ class NavMenuMobile extends Component {
 
             </Navbar>
                 <div  className={this.state.SideNavState}> 
-                    <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
+                    <Link to="/" className="btn"> <img className="nav-logo" src={localStorage.getItem('site-logo')}/></Link>
                     <hr/>
                     <MegaMenuMobile data={this.state.menuData}/>
                 </div>
@@ -163,7 +163,7 @@ class NavMenuMobile extends Component {
                           <span id="current_time2" className="ml-3 text-success"></span>  
             </Navbar>
                 <div  className={this.state.SideNavState}> 
-                    <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
+                    <Link to="/" className="btn"> <img className="nav-logo" src={localStorage.getItem('site-logo')}/></Link>
                     <hr/>
                     <MegaMenuMobile data={this.state.menuData}/>
                 </div>

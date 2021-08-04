@@ -17,6 +17,27 @@ class HomePage extends React.Component{
     componentDidMount() {
         window.scroll(0,0);
         Axios.get(ApiURL.VisitorDetails).then().catch();
+		
+		let siteLogo = localStorage.getItem('site-logo');
+		let appleLogo = localStorage.getItem('apple-logo');
+		let androidLogo = localStorage.getItem('android-logo');
+
+        if(siteLogo==null || appleLogo==null || androidLogo==null)
+        {
+            Axios.get(ApiURL.GetSiteInfo)
+            .then(response=>{
+                if(response.status==200)
+                {
+					
+					 localStorage.setItem('site-logo', response.data[1]['about']);
+					 localStorage.setItem('apple-logo', response.data[2]['about']);
+		             localStorage.setItem('android-logo', response.data[3]['about']);
+                }
+            })
+            .catch(error=>{
+                
+            })
+        }
     }
  render() {
     return (

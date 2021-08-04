@@ -91,7 +91,7 @@ class NavMenuDesktop extends React.Component{
                 <Container fluid={true} className="fixed-top shadow-sm p-2 m-0 bg-white" >
                     <Row>
                         <Col className="p-1" xl={4} lg={4} md={4} sm={12} xs={12}>
-                           <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
+                           <Link to="/" className="btn"> <img className="nav-logo" src={localStorage.getItem('site-logo')}/></Link>
                            <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
                              
                         </Col>
@@ -123,7 +123,7 @@ class NavMenuDesktop extends React.Component{
         <Container fluid={true} className="fixed-top shadow-sm p-2 m-0 bg-white" >
             <Row>
                 <Col className="p-1" xl={4} lg={4} md={4} sm={12} xs={12}>
-                   <Link to="/" className="btn"> <img className="nav-logo" src="./Images/logo.png"/></Link>
+                   <Link to="/" className="btn"> <img className="nav-logo" src={localStorage.getItem('site-logo')}/></Link>
                    <Link to="/cart" className="link cart-btn"><i className="fa fa-shopping-cart"></i> {this.state.cartCount} items </Link>
                    
                 </Col>
