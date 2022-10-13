@@ -1,5 +1,5 @@
 class ApiURL{
-	static baseURL = "https://admin.coderanwar.com/api/";
+	static baseURL = "https://ecom-admin.coderanwar.online/api/";
 	static VisitorDetails = this.baseURL + "GetVisitorDetails";
 	static SendContactDetails = this.baseURL + "SendContactDetails";
 	static GetSiteInfo = this.baseURL + "GetSiteInfo";
