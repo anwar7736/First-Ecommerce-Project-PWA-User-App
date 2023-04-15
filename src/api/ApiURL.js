@@ -1,5 +1,6 @@
 class ApiURL{
-	static baseURL = "https://ecom-admin.coderanwar.online/api/";
+	// static baseURL = "https://ecom-admin.coderanwar.online/api/";
+	static baseURL = "http://127.0.0.1:8000/api/";
 	static VisitorDetails = this.baseURL + "GetVisitorDetails";
 	static SendContactDetails = this.baseURL + "SendContactDetails";
 	static GetSiteInfo = this.baseURL + "GetSiteInfo";
@@ -85,8 +86,16 @@ class ApiURL{
 		return this.baseURL+"RemoveCartItem/"+item_id;
 	}
 
-	static GetOrderDetails(user_id){
-		return this.baseURL+"GetOrderDetails/"+user_id;
+	static GetPaymentList(user_id){
+		return this.baseURL+"GetPaymentList/"+user_id;
+	}		
+
+	static GetOrderList(user_id){
+		return this.baseURL+"GetOrderList/"+user_id;
+	}	
+
+	static GetOrderDetails(order_id){
+		return this.baseURL+"GetOrderDetails/"+order_id;
 	}
 	
 	static GetUserProfile(user_id){

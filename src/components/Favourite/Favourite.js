@@ -6,6 +6,7 @@ import Axios from 'axios';
 import ApiURL from '../../api/ApiURL';
 import cogoToast from 'cogo-toast';
 import SessionHelper from '../../SessionHelper/SessionHelper';
+import swal from 'sweetalert';
 
 class Favourite extends Component {
     constructor(){
@@ -16,21 +17,53 @@ class Favourite extends Component {
     }
 
     RemoveFavItem=(item_id)=>{
-         Axios.get(ApiURL.RemoveFavItem(item_id))
-        .then(response=>{
-            if(response.status===200 && response.data===1)
-            {
-                 cogoToast.success('Product Removed List', {position : 'bottom-center'});
-                 this.setState({refreshStatus: true});
-            }
-            else
-            {
-                 cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
-            }
-        })
-        .catch(error=>{
+        swal({
+              title: "Are you sure?",
+              text: "You want to delete this item?",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then(willDelete => {
+              if (willDelete) {
+                 Axios.get(ApiURL.RemoveFavItem(item_id))
+                .then(response=>{
+                    if(response.status===200 && response.data===1)
+                    {
+                         swal({
+                              title: "Done!",
+                              text: "Item is deleted",
+                              icon: "success",
+                              timer: 1000,
+                              button: false
+                            });
+                         this.setState({refreshStatus: true});
+                    }
+                    else
+                    {
+                         swal({
+                              title: "Error!",
+                              text: "Something Went Wrong!",
+                              icon: "warning",
+                              timer: 1000,
+                              button: false
+                            });
+                    }
+                })
+                .catch(error=>{
+                     swal({
+                          title: "Error!",
+                          text: "Something Went Wrong!",
+                          icon: "warning",
+                          timer: 1000,
+                          button: false
+                        });
+                });
+                    
+                }
+                    
+        });
 
-        })
     }
 
       PageRefresh=()=>{

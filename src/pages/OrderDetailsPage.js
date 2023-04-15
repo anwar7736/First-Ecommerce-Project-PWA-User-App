@@ -25,7 +25,7 @@ class OrderDetailsPage extends React.Component{
     componentDidMount() {
         window.scroll(0,0);
          let user_id = SessionHelper.getIdSession();
-         Axios.get(ApiURL.GetOrderDetails(user_id))
+         Axios.get(ApiURL.GetOrderList(user_id))
         .then(response=> {
             this.setState({ProductData:response.data, isLoading:'d-none',mainDiv:''})
         })

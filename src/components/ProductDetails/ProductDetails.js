@@ -13,31 +13,33 @@ import cogoToast from 'cogo-toast';
 import SessionHelper from '../../SessionHelper/SessionHelper';
 
 class ProductDetails extends Component {
-    constructor(){
+    constructor(props){
         super();
         this.state = {
             previewImg : null,
             isColor: null,
             isSize : null,
+            id : null,
             code : null,
             color: '',
             size : '',
-            quantity : '',
+            quantity : 1,
             refreshStatus : false,
             redirectStatus : false,
             pageRedirectStatus : false,
+            details: props.details,
         }
     }
 
     AddToCart=()=>{
-        let user_id = SessionHelper.getIdSession();
-        if(user_id!==null)
-        {
-
-        let product_code = this.state.code;
+        // let user_id = SessionHelper.getIdSession();
+        // if(user_id!==null)
+        // {
+        const {id,name,code,image,price,special_price,stock} = this.state.details[0];
+        // let product_code = this.state.code;
         let product_color = this.state.color;
         let product_size = this.state.size;
-        let product_quantity = this.state.quantity;
+        let product_quantity = parseInt(this.state.quantity);
 
         if(this.state.isColor=='YES' && product_color.length==0)
         {
@@ -49,41 +51,93 @@ class ProductDetails extends Component {
               cogoToast.error('Please Select Size', {position : 'bottom-center'});
         }
 
-        else if(product_quantity.length==0)
-        {
-              cogoToast.error('Please Choose Quantity', {position : 'bottom-center'});
-        }
+        // else if(product_quantity.length==0)
+        // {
+        //       cogoToast.error('Please Choose Quantity', {position : 'bottom-center'});
+        // }
         else{
-        let MyForm = new FormData();
-        MyForm.append('user_id', user_id);
-        MyForm.append('product_code', product_code);
-        MyForm.append('product_color', product_color);
-        MyForm.append('product_size', product_size);
-        MyForm.append('product_quantity', product_quantity);
-        Axios.post(ApiURL.AddToCart, MyForm)
-        .then(response=>{
-            if(response.status===200 && response.data===1)
+            // if(product_quantity > stock)
+            // {
+            //     cogoToast.error(`Stock not available`, {position : 'bottom-center'});
+            //     return;
+            // }
+
+            let cart = JSON.parse(sessionStorage.getItem('cart')) ?? [];
+            let index = cart.findIndex(data=> data.id == id);
+            let total_price = 0;
+            let unit_price = 0;
+            if(special_price!=='NA')
             {
-                cogoToast.success('Product Added to Cart List', {position : 'bottom-center'});
-                this.setState({refreshStatus : true});
+                total_price = special_price * product_quantity;
+                unit_price = special_price;
             }
-            else if(response.status===200 && response.data!==1)
+            else
             {
-                cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
+                total_price = price * product_quantity;
+                unit_price = price;
             }
-        })
-        .catch(error=>{
-             //cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
-        })
+            
+            if(index == -1)
+            {
+                cart.push({
+                    id: id,
+                    name : name,
+                    code :code,
+                    image: image,
+                    price: unit_price,
+                    total_price : total_price,
+                    size: product_size,
+                    color: product_color,                    
+                    quantity: product_quantity,
+                });
+            }
+            else{
+                let newQty = cart[index]['quantity'] += product_quantity;
+                // if(newQty > stock)
+                // {
+                //     cogoToast.error(`Stock not available`, {position : 'bottom-center'});
+                //     return;
+                // }
+                cart[index]['size'] = product_size;
+                cart[index]['color'] = product_color;
+                cart[index]['total_price'] = newQty * cart[index]['price'];
+            }
+
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            cogoToast.success('Product Added to Cart List', {position : 'bottom-center'});
+            this.setState({refreshStatus : true});
+
+
+        // let MyForm = new FormData();
+        // MyForm.append('user_id', user_id);
+        // MyForm.append('product_code', product_code);
+        // MyForm.append('product_color', product_color);
+        // MyForm.append('product_size', product_size);
+        // MyForm.append('product_quantity', product_quantity);
+        // Axios.post(ApiURL.AddToCart, MyForm)
+        // .then(response=>{
+        //     if(response.status===200 && response.data===1)
+        //     {
+        //         cogoToast.success('Product Added to Cart List', {position : 'bottom-center'});
+        //         this.setState({refreshStatus : true});
+        //     }
+        //     else if(response.status===200 && response.data!==1)
+        //     {
+        //         cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
+        //     }
+        // })
+        // .catch(error=>{
+        //      //cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
+        // })
         }
     }
-        else
-        {
-            this.setState({pageRedirectStatus:true});
-            let path_name = window.location.pathname;
-            SessionHelper.setRedirectPathSession(path_name);
-        }
-    }
+        // else
+        // {
+        //     this.setState({pageRedirectStatus:true});
+        //     let path_name = window.location.pathname;
+        //     SessionHelper.setRedirectPathSession(path_name);
+        // }
+    
     
 
 
@@ -91,57 +145,62 @@ class ProductDetails extends Component {
 
     OrderNow=()=>
     {
-        let user_id = SessionHelper.getIdSession();
+        let user_id = SessionHelper.getIdSession();          
+        this.AddToCart();
         if(user_id!==null)
         {
-        let product_code = this.state.code;
-        let product_color = this.state.color;
-        let product_size = this.state.size;
-        let product_quantity = this.state.quantity;
 
-        if(this.state.isColor==='YES' && product_color.length===0)
-        {
-              cogoToast.error('Please Select Color', {position : 'bottom-center'});
-        }
+        
+        this.setState({redirectStatus: true});
+        
+        // let product_code = this.state.code;
+        // let product_color = this.state.color;
+        // let product_size = this.state.size;
+        // let product_quantity = this.state.quantity;
 
-        else if(this.state.isSize==='YES' && product_size.length===0)
-        {
-              cogoToast.error('Please Select Size', {position : 'bottom-center'});
-        }
+        // if(this.state.isColor==='YES' && product_color.length===0)
+        // {
+        //       cogoToast.error('Please Select Color', {position : 'bottom-center'});
+        // }
 
-        else if(product_quantity.length===0)
-        {
-              cogoToast.error('Please Choose Quantity', {position : 'bottom-center'});
-        }
-        else{
-        let MyForm = new FormData();
-        MyForm.append('user_id', user_id);
-        MyForm.append('product_code', product_code);
-        MyForm.append('product_color', product_color);
-        MyForm.append('product_size', product_size);
-        MyForm.append('product_quantity', product_quantity);
-        Axios.post(ApiURL.AddToCart, MyForm)
-        .then(response=>{
-            if(response.status===200 && response.data===1)
-            {
-                cogoToast.success('Product Added to Cart List', {position : 'bottom-center'});
-               this.setState({redirectStatus: true});
-            }
-            else if(response.status===200 && response.data===0)
-            {
-                cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
-            }
-        })
-        .catch(error=>{
-             //cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
-        })
-        }
+        // else if(this.state.isSize==='YES' && product_size.length===0)
+        // {
+        //       cogoToast.error('Please Select Size', {position : 'bottom-center'});
+        // }
+
+        // else if(product_quantity.length===0)
+        // {
+        //       cogoToast.error('Please Choose Quantity', {position : 'bottom-center'});
+        // }
+        // else{
+        // let MyForm = new FormData();
+        // MyForm.append('user_id', user_id);
+        // MyForm.append('product_code', product_code);
+        // MyForm.append('product_color', product_color);
+        // MyForm.append('product_size', product_size);
+        // MyForm.append('product_quantity', product_quantity);
+        // Axios.post(ApiURL.AddToCart, MyForm)
+        // .then(response=>{
+        //     if(response.status===200 && response.data===1)
+        //     {
+        //         cogoToast.success('Product Added to Cart List', {position : 'bottom-center'});
+        //        this.setState({redirectStatus: true});
+        //     }
+        //     else if(response.status===200 && response.data===0)
+        //     {
+        //         cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
+        //     }
+        // })
+        // .catch(error=>{
+        //      //cogoToast.error('Something Went Wrong!', {position : 'bottom-center'});
+        // })
+        // }
      }
         else
         {
             this.setState({pageRedirectStatus:true});
-            let path_name = window.location.pathname;
-            SessionHelper.setRedirectPathSession(path_name);
+            // let path_name = window.location.pathname;
+            SessionHelper.setRedirectPathSession('/cart');
         }
     }
         
@@ -212,10 +271,12 @@ class ProductDetails extends Component {
     }
 
     render() {
+        const {stock} = this.state.details[0];
         let MyList = this.props.details;
         if(MyList.length > 0)
         {
             let product_name = MyList[0]['name'];
+            let id = MyList[0]['id'];
             let code = MyList[0]['product_code'];
             let  short_dec= MyList[0]['des'];
             let  desc=  MyList[0]['details'];
@@ -281,6 +342,10 @@ class ProductDetails extends Component {
                 />
             }
 
+            if(this.state.id===null)
+            {
+                this.setState({id : id});
+            }             
             if(this.state.code===null)
             {
                 this.setState({code : code});
@@ -368,8 +433,11 @@ class ProductDetails extends Component {
                                         {
                                             PriceList(price, special_price)
                                         }
+                                    </div>                                    
+                                    <div className="input-group d-none">
+                                        <strong>Available Stock : {stock}</strong>
                                     </div>
-                                    <h6 className="mt-2">Choose Color</h6>
+                                    <h6 className={colorDiv}>Choose Color</h6>
                                     <div className="input-group">
                                         <div className={colorDiv}>
                                             <select onChange={(e)=> this.setState({color : e.target.value})}>
@@ -379,7 +447,7 @@ class ProductDetails extends Component {
                                         </div>
                                     </div>
 
-                                    <h6 className="mt-2">Choose Size</h6>
+                                    <h6 className={sizeDiv}>Choose Size</h6>
                                     <div className="input-group">
                                         <div className="">
                                             <div className={sizeDiv}>
@@ -393,7 +461,7 @@ class ProductDetails extends Component {
                                     </div>
 
                                     <h6 className="mt-2">Quantity</h6>
-                                    <input onChange={(e)=> this.setState({quantity : e.target.value})} className="form-control text-center w-50" min="1" type="number" />
+                                    <input value={this.state.quantity} onChange={(e)=> this.setState({quantity : e.target.value})} className="form-control text-center w-50" min="1" type="number"/>
 
                                     <div className="input-group mt-3">
                                         <button onClick={this.AddToCart} className="btn site-btn m-1 "> <i className="fa fa-shopping-cart"></i>  Add To Cart</button>

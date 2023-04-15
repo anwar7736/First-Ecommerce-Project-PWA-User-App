@@ -21,13 +21,17 @@ class NavMenuDesktop extends React.Component{
     }
 
     componentDidMount(){
-        Axios.get(ApiURL.CartCount(SessionHelper.getIdSession()))
-        .then(response=>{
-            this.setState({cartCount : response.data});
-        })
-        .catch(error=>{
 
-        }) 
+            let cart = JSON.parse(sessionStorage.getItem('cart'));
+            this.setState({cartCount : cart == null ? '0' : cart.length});
+        
+        // Axios.get(ApiURL.CartCount(SessionHelper.getIdSession()))
+        // .then(response=>{
+        //     this.setState({cartCount : response.data});
+        // })
+        // .catch(error=>{
+
+        // }) 
 
         Axios.get(ApiURL.FavItemCount(SessionHelper.getIdSession()))
         .then(response=>{
@@ -152,6 +156,9 @@ class NavMenuDesktop extends React.Component{
                             </NavDropdown.Item> 
                             <NavDropdown.Item>
                                 <Link to="/order_details" className="btn text-danger"><i className="fas fa-list"></i> Order List</Link>
+                            </NavDropdown.Item>                            
+                            <NavDropdown.Item>
+                                <Link to="/payment_list" className="btn text-info"><i className="fas fa-list"></i> Payment List</Link>
                             </NavDropdown.Item>
                              <NavDropdown.Item>
                                 <Link to="/user_profile"><span className="btn text-success"><i className="fa h4 fa-user"></i> My Profile</span></Link>

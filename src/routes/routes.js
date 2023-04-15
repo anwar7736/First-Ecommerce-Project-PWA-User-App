@@ -12,6 +12,8 @@ import ChangePasswordPage from '../pages/ChangePasswordPage';
 import ContactPage from '../pages/ContactPage';
 import ProductDetailsPage from '../pages/ProductDetailsPage';
 import OrderDetailsPage from '../pages/OrderDetailsPage';
+import PrintInvoicePage from '../pages/PrintInvoicePage';
+import OrderPaymentPage from '../pages/OrderPaymentPage';
 import RefundPage from '../pages/RefundPage';
 import PolicyPage from '../pages/PolicyPage';
 import PurchasePage from '../pages/PurchasePage';
@@ -36,7 +38,9 @@ class Routes extends React.Component{
                 <Route exact path="/forget_password" render={(props)=> <ForgetPasswordPage {...props} key={ Date.now() } />} />
                 <Route exact path="/change_password" render={(props)=> <ChangePasswordPage {...props} key={ Date.now() } />} />
                 <Route exact path="/product_details/:product_code" render={(props)=> <ProductDetailsPage {...props} key={ Date.now() } />} />
-                <Route exact path="/order_details/" render={(props)=> <OrderDetailsPage {...props} key={ Date.now() } />} />
+                <Route exact path="/order_details/" render={(props)=> <OrderDetailsPage {...props} key={ Date.now() } />} />                
+                <Route exact path="/print_invoice/:id" render={(props)=> <PrintInvoicePage {...props} key={ Date.now() } />} />                
+                <Route exact path="/payment_list/" render={(props)=> <OrderPaymentPage {...props} key={ Date.now() } />} />
                 <Route exact path="/contact" render={(props)=> <ContactPage {...props} key={ Date.now() } />} />
                 <Route exact path="/refund" render={(props)=> <RefundPage {...props} key={ Date.now() } />} />
                 <Route exact path="/policy" render={(props)=> <PolicyPage {...props} key={ Date.now() } />} />

@@ -1,7 +1,7 @@
 import React, {Component,Fragment} from 'react';
 import {Container, Row, Col, Card, Breadcrumb, Modal} from 'react-bootstrap'
 import Axios from 'axios';
-import {Link} from 'react-router-dom'
+import {NavLink, Link} from 'react-router-dom'
 import {Redirect} from 'react-router'
 import ApiURL from '../../api/ApiURL';
 import cogoToast from 'cogo-toast';
@@ -91,41 +91,76 @@ class OrderDetails extends Component {
         let MyList = this.props.ProductData;
         let totalPrice = 0;
         let MyView = MyList.map((List, i)=>{
-            totalPrice+=parseInt(List.total_price);
+            totalPrice+=parseInt(List.final_amount);
+            // return (
+            //     <>
+            //     <Col className=" d-flex justify-content-around p-1" md={12} lg={12} sm={12} xs={12}>
+            //             <div className="float-left w-75">
+            //                 <h6 className="product-name-on-card"> {List.product_name}</h6>
+            //                 <h6 className="product-price-on-card"> Total Price: {List.final_amount }</h6>
+            //                 <h6 className="product-name-on-card text-primary"> Quantity: {List.product_quantity}</h6>
+            //                 <h6 className="product-name-on-card text-dark"> Size: {List.product_size}</h6>
+            //                 <h6 className="product-name-on-card text-success"> Color: {List.product_color}</h6>
+            //                 <h6 className="product-price-on-card"> Status: {List.order_status}</h6>
+            //             </div>
+            //             <div className="float-right px-2 w-25">
+            //                 <button  onClick={this.ReviewModalOpen.bind(this,List.product_code)} className="btn btn-sm site-btn">Review</button><br/><br/>
+            //                 <button  onClick={this.ReviewModalOpen.bind(this,List.product_code)} className="btn btn-sm btn-secondary">Print</button>
+            //             </div>
+            //         </Col>
+            //         <hr className="bg-light w-100"/>
+
+            //     </>
+            // );
             return (
                 <>
-                <Col className=" d-flex justify-content-around p-1" md={12} lg={12} sm={12} xs={12}>
-                        <div className="float-left w-75">
-                            <h6 className="product-name-on-card"> {List.product_name}</h6>
-                            <h6 className="product-price-on-card"> Total Price: {List.total_price }</h6>
-                            <h6 className="product-name-on-card text-primary"> Quantity: {List.product_quantity}</h6>
-                            <h6 className="product-name-on-card text-dark"> Size: {List.product_size}</h6>
-                            <h6 className="product-name-on-card text-success"> Color: {List.product_color}</h6>
-                            <h6 className="product-price-on-card"> Status: {List.order_status}</h6>
-                        </div>
-                        <div className="float-right px-2 w-25">
+                    <tr>
+                        <td>{i+1}</td>
+                        <td>{List.transaction_date}</td>
+                        <td>{List.invoice_no}</td>
+                        <td>{List.final_amount}</td>
+                        <td>{List.payment_method} ({List.payment_status})</td>
+                        <td>{List.status}</td>
+                        <td>
                             <button  onClick={this.ReviewModalOpen.bind(this,List.product_code)} className="btn btn-sm site-btn">Review</button>
-                        </div>
-                    </Col>
-                    <hr className="bg-light w-100"/>
-
+                            <NavLink to={"/print_invoice/"+List.id} className="btn btn-sm btn-secondary ml-1">Print</NavLink>
+                        </td>
+                    </tr>
                 </>
             );
-        })
+        });
     
         return (
                 <Fragment>
-                   <Container className={this.state.MainDiv+" TopSection animated slideInDown"}>
+                   <Container className={this.state.MainDiv+" TopSection animated slideInDown fluid"}>
                     <Row  className="d-flex justify-content-center">
                         <Col  md={10} lg={10}  sm={12} xs={12}>
                             <Breadcrumb className="shadow-sm mt-2 bg-white">
                                 <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
                                 <Breadcrumb.Item><Link to="/order_details">Order Details</Link></Breadcrumb.Item>
                             </Breadcrumb>
-                            <Container className="mt-1">
-                            <h3 className="mt-3 text-danger">Total Amount : {totalPrice}</h3>
+                            <Container className="container-fluid">
+                            <h3 className="mt-3 text-danger">Total Invoice Amount : {totalPrice}</h3>
                                 <Row className="shadow-sm animated slideInDown bg-white p-4">
-                                   {MyView}
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl</th>
+                                                <th>Date</th>
+                                                <th>Invoice</th>
+                                                <th>Amount</th>                            
+                                                <th>Payment</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {MyView}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                   
                                 </Row>
                             </Container>
                         </Col>

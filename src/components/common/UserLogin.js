@@ -185,14 +185,14 @@ RememberOnChange=()=>{
                                             <input onChange={this.RememberOnChange} type="checkbox" defaultChecked={this.state.isChecked}/> <span className="text-danger">Remember me </span>
                                         </Form.Label>
                                         <Button type="submit" className="btn btn-block m-2 site-btn">Login</Button>
-                                        <GoogleLogin
+                                        {/* <GoogleLogin
                                             clientId="988510399972-nis8au1eeguae63tmg3p8bcr380kdkqs.apps.googleusercontent.com"
                                             buttonText="Login With Your Google Account"
                                             onSuccess={this.LoginWithGoogle}
                                             onFailure={this.LoginWithGoogle}
                                             cookiePolicy={'single_host_origin'}
                                             className='btn btn-block m-2 text-success'
-                                        /><br/>
+                                        /><br/> */}
                                         <span className="text-danger" >No yet a registered? <Link to="/user_signup">Signup</Link></span><br/>
                                         <span><Link to="/email_verification">Forgotten Password?</Link></span>
                                     </Form>

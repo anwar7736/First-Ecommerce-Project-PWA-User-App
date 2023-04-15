@@ -1,47 +1,44 @@
 import React, {Component, Fragment} from 'react';
+import {Link} from 'react-router-dom';
 import NavMenuMobile from '../components/common/NavMenuMobile';
 import NavMenuDesktop from '../components/common/NavMenuDesktop';
-import CartList from '../components/Cart/CartList';
+import OrderPayment from '../components/OrderPayment/OrderPayment';
 import FooterDesktop from '../components/common/FooterDesktop';
 import FooterMobile from '../components/common/FooterMobile';
-import {Redirect} from 'react-router';
+import Axios from 'axios';
+import ApiURL from '../api/ApiURL';
 import SessionHelper from '../SessionHelper/SessionHelper';
 
-class CartPage extends React.Component{
-     constructor(){
+
+class OrderPaymentPage extends React.Component{
+     constructor() {
         super();
-        this.state = {
-            redirectStatus : false,
+        this.state={
+            data:[],
         }
     }
+
     componentDidMount() {
         window.scroll(0,0);
-        
-        // if(SessionHelper.getIdSession()===null)
-        // {
-        //     this.setState({redirectStatus:true})
-        // }
+         let user_id = SessionHelper.getIdSession();
+         Axios.get(ApiURL.GetPaymentList(user_id))
+        .then(response=> {
+            this.setState({data:response.data})
+        })
     }
-    RedirectToHome=()=>{
-        if(this.state.redirectStatus===true)
-        {
-             return(
-                <Redirect to="/user_login" />
-            )
-        }
-}
+
  render() {
     return (
         <Fragment>
-            <title>Cart List</title>
+            <title>Order Details</title>
             <div className="Mobile">
                 <NavMenuMobile/>
             </div>
             <div className="Desktop">
                 <NavMenuDesktop/>
             </div>
-           <div>
-                <CartList/>
+           <div className="">
+                <OrderPayment data={this.state.data} />
            </div>
             <div className="Desktop">
                 <FooterDesktop/>
@@ -49,10 +46,9 @@ class CartPage extends React.Component{
             <div className="Mobile">
                 <FooterMobile/>
             </div>
-            {this.RedirectToHome()}
         </Fragment>
     );
   }
 }
 
-export default CartPage;
+export default OrderPaymentPage;
