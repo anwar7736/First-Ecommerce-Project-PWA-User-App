@@ -120,11 +120,7 @@ class CartList extends React.Component{
         //     cogoToast.error('Choose Your City');
         // }        
         
-        if(delivery_charge == 0)
-        {
-            cogoToast.error('Choose Delivery Area');
-        }
-        else if(payment_method.length===0)
+        if(payment_method.length===0)
         {
              cogoToast.error('Choose Payment Method');
         }
@@ -141,6 +137,11 @@ class CartList extends React.Component{
              cogoToast.error('Enter Your Current Address');
         }
 
+        else if(payment_method== 'cash' && delivery_charge == 0)
+        {
+            cogoToast.error('Choose Delivery Area');
+        }
+
         else{
 
             let MyForm = new FormData();
@@ -155,8 +156,13 @@ class CartList extends React.Component{
 
             Axios.post(ApiURL.PlaceUserOrder, MyForm)
             .then(response=>{
-                if(response.status===200 && response.data===1)
+                if(response.status===200)
                 {   
+                    if(payment_method == 'bkash')
+                    {
+                        window.location.href = ApiURL.BkashPayment(response.data);
+                    }
+
                     this.setState({redirectStatus:true});
                     cogoToast.success('Your order has been received');
                     sessionStorage.removeItem('cart');
@@ -178,10 +184,10 @@ class CartList extends React.Component{
             let index = cart.findIndex(data=> data.id == id);
             if(index != -1 && cart[index]['quantity'] < 10)
             {
-                let newQty = cart[index]['quantity']++;
-                cart[index]['total_price'] = newQty * cart[index]['price'];
+                cart[index]['quantity'] += 1;
+                cart[index]['total_price'] = cart[index]['quantity'] * cart[index]['price'];
                 sessionStorage.setItem('cart', JSON.stringify(cart));
-                cogoToast.success('Product Quantity Increased', {position : 'bottom-center'});
+                cogoToast.success('Item Quantity Increased', {position : 'bottom-center'});
                 this.setState({refreshStatus: true});
             }
 
@@ -215,10 +221,10 @@ class CartList extends React.Component{
         let index = cart.findIndex(data=> data.id == id);
         if(index != -1 && cart[index]['quantity'] > 1)
         {
-            let newQty = cart[index]['quantity']--;
-            cart[index]['total_price'] = newQty * cart[index]['price'];        
+            cart[index]['quantity'] -= 1;
+            cart[index]['total_price'] = cart[index]['quantity'] * cart[index]['price'];        
             sessionStorage.setItem('cart', JSON.stringify(cart));
-            cogoToast.success('Product Quantity Decreased', {position : 'bottom-center'});
+            cogoToast.success('Item Quantity Decreased', {position : 'bottom-center'});
             this.setState({refreshStatus: true});
         }
 
@@ -263,7 +269,7 @@ class CartList extends React.Component{
                 {
                     cart.splice(index, 1);   
                     sessionStorage.setItem('cart', JSON.stringify(cart));
-                    cogoToast.success('Product Removed', {position : 'bottom-center'});
+                    // cogoToast.success('Item Removed', {position : 'bottom-center'});
                     this.setState({refreshStatus: true});
                     swal({
                       title: "Done!",

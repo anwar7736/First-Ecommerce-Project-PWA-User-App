@@ -145,6 +145,18 @@ class ProductDetails extends Component {
 
     OrderNow=()=>
     {
+        if(this.state.isColor=='YES' && this.state.color.length==0)
+        {
+              cogoToast.error('Please Select Color', {position : 'bottom-center'});
+              return;
+        }
+
+        else if(this.state.isSize=='YES' && this.state.size.length==0)
+        {
+              cogoToast.error('Please Select Size', {position : 'bottom-center'});
+              return;
+        }
+
         let user_id = SessionHelper.getIdSession();          
         this.AddToCart();
         if(user_id!==null)

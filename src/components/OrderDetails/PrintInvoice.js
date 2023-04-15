@@ -36,6 +36,8 @@ class PrintInvoice extends Component {
                         <td>{i+1}</td>
                         <td>{List.product.name}</td>
                         <td>{List.price}</td>
+                        <td>{List.color}</td>
+                        <td>{List.size}</td>
                         <td>{List.quantity}</td>
                         <td>{List.price * List.quantity}</td>
                     </tr>
@@ -83,6 +85,8 @@ class PrintInvoice extends Component {
                                                 <th>Sl</th>
                                                 <th>Product</th>
                                                 <th>Price</th>                            
+                                                <th>Color</th>                            
+                                                <th>Size</th>                            
                                                 <th>Quantity</th>
                                                 <th>Total</th>
                                             </tr>
