@@ -32,7 +32,7 @@ class Collection extends React.Component{
             return <Fragment>
                     <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
                    <Link className="link" to={"/product_details/"+ProductList.code}>
-                         <Card className="card w-100 image-box">
+                         <Card className="card w-100 image-box h-100">
                         <img src={ProductList.image} />
                         <Card.Body>
                             <h5 className="product-name-on-card">{ProductList.name}</h5>
@@ -47,7 +47,7 @@ class Collection extends React.Component{
             return <Fragment>
                     <Col className="p-1" key={1} xl={2} lg={2} md={2} sm={4} xs={6}>
                    <Link className="link" to={"/product_details/"+ProductList.code}>
-                         <Card className="card w-100 image-box">
+                         <Card className="card w-100 image-box h-100">
                         <img src={ProductList.image} />
                         <Card.Body>
                             <h5 className="product-name-on-card">{ProductList.name}</h5>

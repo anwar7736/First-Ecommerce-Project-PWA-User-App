@@ -1,6 +1,6 @@
 class ApiURL{
-	// static baseURL = "https://ecom-admin.coderanwar.online/api/";
-	static baseURL = "http://127.0.0.1:8000/api/";
+	static baseURL = "https://ecom-admin.coderanwar.online/api/";
+	// static baseURL = "http://127.0.0.1:8000/api/";
 	static baseURL2 = "http://127.0.0.1:8000/";
 	static VisitorDetails = this.baseURL + "GetVisitorDetails";
 	static SendContactDetails = this.baseURL + "SendContactDetails";

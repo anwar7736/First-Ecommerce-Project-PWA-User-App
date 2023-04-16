@@ -40,7 +40,7 @@ class NewArrival extends React.Component{
             return <Fragment>
                     <Col className="p-1" key={1}>
                    <Link className="link" to={"/product_details/"+ProductList.code}>
-                         <Card className="card w-100 image-box">
+                         <Card className="card h-100 image-box">
                         <img src={ProductList.image} />
                         <Card.Body>
                             <h5 className="product-name-on-card">{ProductList.name}</h5>
@@ -55,7 +55,7 @@ class NewArrival extends React.Component{
             return <Fragment>
                     <Col className="p-1" key={1}>
                    <Link className="link" to={"/product_details/"+ProductList.code}>
-                         <Card className="card w-100 image-box">
+                         <Card className="card h-100 image-box">
                         <img src={ProductList.image} />
                         <Card.Body>
                             <h5 className="product-name-on-card">{ProductList.name}</h5>
