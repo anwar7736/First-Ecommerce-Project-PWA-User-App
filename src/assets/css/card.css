@@ -18,10 +18,11 @@
     width: 100% !important;
 }
 .image-box img {
+    height: 200px;
     width: 100% !important;
     transition: all 0.3s;
     display: block;
-    height: auto;
+    /*height: auto;*/
     transform: scale(1);
 }
 .image-box:hover img {
